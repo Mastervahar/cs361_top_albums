@@ -19,7 +19,7 @@ class AlbumApp
 		<a href=\"year\">Sort By Year</a>
 		</div>
 		<select>
-		<option style=\"margin-left: 30px;\" value=\"0\">choose</option>"
+		<option style=\"margin-left: 50px;\" value=\"0\">choose</option>"
 
 		j = 1
 		albums.each do |album|
@@ -27,7 +27,7 @@ class AlbumApp
 			j += 1
 		end
 
-		response_body << "</select></div>"
+		response_body << "</select></div><ol>"
 
 
     	# Read the data from the file.
@@ -37,19 +37,19 @@ class AlbumApp
     		albums = albums.sort_by {|album| album[0]}
     	elsif req.path_info == "/year"
     		albums = albums.sort_by {|album| album[1]}
-    	else
-			# do something else
-		end
+    	end
 
 		# Append it to the response body.
 		i = 1
 		albums.each do |album|
 			response_body << "
-			<div class=\"#{i}\" style=\"background-color: silver; display: inline-block; width:90%;\">#{i}: 
-			#{album[0]}-----#{album[1]}
+			<div class=\"#{i}\" style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li> 
+			#{album[0]}-----#{album[1]}</li>
 			</div>"
 			i += 1
 		end
+
+		response_body << "</ol>"
 
 
     # Send the response
