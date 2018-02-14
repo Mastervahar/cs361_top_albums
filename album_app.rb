@@ -3,18 +3,17 @@ class AlbumApp
 
 	def call(env)
 		response_body = "<h1>Top 100 Albums of All Time</h1>"
-    # Read the data from the file.
-    # albums = ['fee', 'fi', 'fo', 'funk']
+    	# Read the data from the file.
+    	# albums = ['fee', 'fi', 'fo', 'funk']
 
+    	albums = CSV.read('top_100_albums.txt')
 
-    albums = CSV.read('top_100_albums.csv')
-
-    for album in albums
-    	response_body << "
-    	<div class=\"name\" style=\"background-color: silver; display: inline-block; width:90%;\">
-    	"+album[0]+"-----"+album[1]+"
-    	</div>"
-    end
+    	for album in albums
+    		response_body << "
+    		<div class=\"name\" style=\"background-color: silver; display: inline-block; width:90%;\">
+    		"+album[0]+"-----"+album[1]+"
+    		</div>"
+    	end
     # Append it to the response body.
     response_body << albums.to_s
     # Send the response
