@@ -9,10 +9,10 @@ class AlbumApp
 		response_body = "
 		<h1>Top 100 Albums of All Time</h1>
 		<div class=\"wrapper\" style=\"display:flex;\">
-		<div class=\"name\">
+		<div class=\"name\"style=\" margin-left: 30px;\">
 		<a href=\"name\">Sort By Name</a>
 		</div>
-		<div class=\"year\">
+		<div class=\"year\" style=\"margin-left: 30px;\">
 		<a href=\"year\">Sort By Year</a>
 		</div>
 		</div>
@@ -32,11 +32,13 @@ class AlbumApp
 		end
 
 		# Append it to the response body.
+		i = 1
 		albums.each do |album|
 			response_body << "
-			<div class=\"name\" style=\"background-color: silver; display: inline-block; width:90%;\">
+			<div class=\"#{i}\" style=\"background-color: silver; display: inline-block; width:90%;\">#{i}: 
 			#{album[0]}-----#{album[1]}
 			</div>"
+			i += 1
 		end
 
 
