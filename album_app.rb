@@ -6,6 +6,9 @@ class AlbumApp
 		req = Rack::Request.new(env)
 
 
+		albums = CSV.read('top_100_albums.txt')
+		list_size = albums.length
+
 		response_body = "
 		<h1>Top 100 Albums of All Time</h1>
 		<div class=\"wrapper\" style=\"display:flex;\">
@@ -15,13 +18,20 @@ class AlbumApp
 		<div class=\"year\" style=\"margin-left: 30px;\">
 		<a href=\"year\">Sort By Year</a>
 		</div>
-		</div>
-		"
+		<select>
+		<option style=\"margin-left: 30px;\" value=\"0\">choose</option>"
+
+		j = 1
+		albums.each do |album|
+			response_body << "<option value=\"#{j}\">#{j}</option>"
+			j += 1
+		end
+
+		response_body << "</select></div>"
 
 
     	# Read the data from the file.
     	# albums = ['fee', 'fi', 'fo', 'funk']
-    	albums = CSV.read('top_100_albums.txt')
 
     	if req.path_info == "/name"
     		albums = albums.sort_by {|album| album[0]}
