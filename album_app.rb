@@ -2,7 +2,17 @@ require 'csv'
 class AlbumApp
 
 	def call(env)
-		response_body = "<h1>Top 100 Albums of All Time</h1>"
+		response_body = "
+		<h1>Top 100 Albums of All Time</h1>
+		<div class=\"wrapper\" style=\"display:flex;\">
+		<div class=\"name\">
+		<a href=\"#\">Sort By Name</a>
+		</div>
+		<div class=\"year\">
+		<a href=\"#\">Sort By Year</a>
+		</div>
+		</div>
+		"
     	# Read the data from the file.
     	# albums = ['fee', 'fi', 'fo', 'funk']
 
