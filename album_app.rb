@@ -1,4 +1,23 @@
 require 'csv'
+require 'sinatra'
+
+# set :albums,
+
+# end
+
+get '/' do
+
+end
+
+get '/name' do
+
+end
+
+get '/year' do
+
+end
+
+
 class AlbumApp
 
 	def call(env)
