@@ -10,7 +10,7 @@ set :albums, AlbumList.new(albums)
 
 get '/' do
 
-	'{settings.albums}'
+	settings.albums
 
 end
 
