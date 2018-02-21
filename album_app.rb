@@ -1,6 +1,7 @@
 require 'csv'
 require 'sinatra'
 
+<<<<<<< HEAD
 # set :albums,
 
 # end
@@ -9,12 +10,10 @@ get '/' do
 
 end
 
-get '/name' do
-
+get '/name'
 end
 
-get '/year' do
-
+get '/year'
 end
 
 
@@ -37,7 +36,8 @@ class AlbumApp
 		<div class=\"year\" style=\"margin-left: 30px;\">
 		<a href=\"year\">Sort By Year</a>
 		</div>
-		<select>
+		<form action=\"\" name=\"thisFrm\" id=\"thisForm\" method=\"POST\">
+		<select onchange=\"\">
 		<option style=\"margin-left: 50px;\" value=\"0\">choose</option>"
 
 		j = 1
@@ -46,7 +46,7 @@ class AlbumApp
 			j += 1
 		end
 
-		response_body << "</select></div><ol>"
+		response_body << "</select></form></div><ol>"
 
 
     	# Read the data from the file.
@@ -62,13 +62,20 @@ class AlbumApp
 		i = 1
 		albums.each do |album|
 			response_body << "
-			<div class=\"#{i}\" style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li> 
-			#{album[0]}-----#{album[1]}</li>
-			</div>"
-			i += 1
-		end
+			<div class=\"#{i}\" "
 
-		response_body << "</ol>"
+			if req.POST
+				response_body << "style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li>"
+				response_body << "style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li>"
+				"#{album[0]}-----#{album[1]}</li>
+				</div>"
+
+				if req.
+
+					i += 1
+				end
+
+				response_body << "</ol>"
 
 
     # Send the response
