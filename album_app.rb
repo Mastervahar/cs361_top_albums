@@ -1,87 +1,95 @@
 require 'csv'
 require 'sinatra'
+require 'AlbumList'
 
-<<<<<<< HEAD
-# set :albums,
+data = CSV.open("top_100_albums.txt")
 
-# end
+albums = data.map.with_index { |row, i| Album.new(i + 1, row[0], row[1]) }
+
+set :albums, AlbumList.new(albums)
 
 get '/' do
 
-end
-
-get '/name'
+	'{settings.albums}'
 
 end
 
-get '/year'
+# get '/name' do
 
-end
+# end
 
+# get '/year' do
 
-class AlbumApp
-
-	def call(env)
-
-		req = Rack::Request.new(env)
+# end
 
 
-		albums = CSV.read('top_100_albums.txt')
-		list_size = albums.length
+# class AlbumApp
 
-		response_body = "
-		<h1>Top 100 Albums of All Time</h1>
-		<div class=\"wrapper\" style=\"display:flex;\">
-		<div class=\"name\"style=\" margin-left: 30px;\">
-		<a href=\"name\">Sort By Name</a>
-		</div>
-		<div class=\"year\" style=\"margin-left: 30px;\">
-		<a href=\"year\">Sort By Year</a>
-		</div>
-		<form action=\"\" name=\"thisFrm\" id=\"thisForm\" method=\"POST\">
-		<select onchange=\"\">
-		<option style=\"margin-left: 50px;\" value=\"0\">choose</option>"
+	# def call(env)
 
-		j = 1
-		albums.each do |album|
-			response_body << "<option value=\"#{j}\">#{j}</option>"
-			j += 1
-		end
+		# req = Rack::Request.new(env)
 
-		response_body << "</select></form></div><ol>"
+		# albums = CSV.read('top_100_albums.txt')
 
+		# list_size = albums.length
 
-    	# Read the data from the file.
-    	# albums = ['fee', 'fi', 'fo', 'funk']
+		# response_body = "
+		# <h1>Top 100 Albums of All Time</h1>
+		# <div class=\"wrapper\" style=\"display:flex;\">
+		# <div class=\"name\"style=\" margin-left: 30px;\">
+		# <a href=\"name\">Sort By Name</a>
+		# </div>
+		# <div class=\"year\" style=\"margin-left: 30px;\">
+		# <a href=\"year\">Sort By Year</a>
+		# </div>
+		# <form action=\"\" name=\"thisFrm\" id=\"thisForm\" method=\"POST\">
+		# <select onchange=\"\">
+		# <option style=\"margin-left: 50px;\" value=\"0\">choose</option>"
 
-    	if req.path_info == "/name"
-    		albums = albums.sort_by {|album| album[0]}
-    	elsif req.path_info == "/year"
-    		albums = albums.sort_by {|album| album[1]}
-    	end
+		# j = 1
+		# albums.each do |album|
+			# response_body << "<option value=\"#{j}\">#{j}</option>"
+			# j += 1
+		# end
 
-		# Append it to the response body.
-		i = 1
-		albums.each do |album|
-			response_body << "
-			<div class=\"#{i}\" "
-
-			if req.POST
-				response_body << "style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li>"
-				response_body << "style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li>"
-				"#{album[0]}-----#{album[1]}</li>
-				</div>"
-
-				if req.
-
-					i += 1
-				end
-
-				response_body << "</ol>"
+		# response_body << "</select></form></div><ol>"
 
 
-    # Send the response
-    [200, {'Content-Type' => 'text/html'}, [response_body.to_s]]
-end
+    	# # Read the data from the file.
+    	# # albums = ['fee', 'fi', 'fo', 'funk']
 
-end
+    	# if req.path_info == "/name"
+    		# albums = albums.sort_by {|album| album[0]}
+    	# elsif req.path_info == "/year"
+    		# albums = albums.sort_by {|album| album[1]}
+    	# end
+
+		# # Append it to the response body.
+		# i = 1
+		# albums.each do |album|
+			# response_body << "
+			# <div class=\"#{i}\" "
+
+			# if req.POST
+				# response_body << "style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li>"
+				# response_body << "style=\"margin: 5px 0;background-color: silver; display: inline-block; width:90%;\"><li>"
+				# "#{album[0]}-----#{album[1]}</li>
+				# </div>"
+
+				# if req.
+
+					# i += 1
+				# end
+
+				# response_body << "</ol>"
+
+
+				# # Send the response
+				# [200, {'Content-Type' => 'text/html'}, [response_body.to_s]]
+			# end
+		
+		# end
+		
+	# end
+
+# end
