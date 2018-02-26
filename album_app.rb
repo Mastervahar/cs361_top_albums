@@ -7,13 +7,21 @@ data = CSV.open("top_100_albums.txt")
 
 albums = data.map.with_index { |row, i| Album.new(i + 1, row[0], row[1]) }
 
-set :albums, AlbumList.new(albums)
+album_list_object = AlbumList.new(albums)
+# set :album_list_object, AlbumList.new(albums)
+
+# settings.album_list_object.sort_by_year
+
+string = ""
+
+# album_list_object.sort_by_year
+string = album_list_object.print_album_list(string)
+
 
 get '/' do
-
-	albums.each do |album|
-		album.get_name
-
+	
+	string
+	
 end
 
 # get '/name' do
