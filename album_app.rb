@@ -11,7 +11,8 @@ set :albums, AlbumList.new(albums)
 
 get '/' do
 
-	"Hello world!"
+	albums.each do |album|
+		album.get_name
 
 end
 
@@ -88,9 +89,9 @@ end
 				# # Send the response
 				# [200, {'Content-Type' => 'text/html'}, [response_body.to_s]]
 			# end
-		
+
 		# end
-		
+
 	# end
 
 # end
