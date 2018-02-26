@@ -1,6 +1,7 @@
 require 'csv'
 require 'sinatra'
-require 'AlbumList'
+require_relative 'AlbumList'
+require_relative 'Album'
 
 data = CSV.open("top_100_albums.txt")
 
@@ -10,7 +11,7 @@ set :albums, AlbumList.new(albums)
 
 get '/' do
 
-	settings.albums
+	"Hello world!"
 
 end
 
