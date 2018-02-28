@@ -16,21 +16,15 @@ class AlbumList
 	end
 	
 	def sort_by_year
-		album_list = self.get_album_list
-		sorted_album_list = album_list.sort_by{ |album| album.get_year}
-		return sorted_album_list
+		@album_list.sort_by{ |album| album.get_year}
 	end
 
 	def sort_by_name
-		album_list = self.get_album_list
-		sorted_album_list = album_list.sort_by{ |album| album.get_name}
-		return sorted_album_list
+		@album_list.sort_by!{ |album| album.get_name}
 	end
 	
 	def sort_by_rank
-		album_list = self.get_album_list
-		sorted_album_list = album_list.sort_by{ |album| album.get_rank}
-		return sorted_album_list
+		@album_list.sort_by{ |album| album.get_rank}
 	end
 	
 end
