@@ -19,7 +19,8 @@ get '/' do
 	@albums = albums
 	@albums_sorted_by_rank = album_list_object.sort_by_rank
 	@album_list_sorted_by_rank = AlbumList.new(@albums_sorted_by_rank)
-	@string = @album_list_sorted_by_rank.print_album_list(string)
+	@rank_to_highlight = params[:rank]
+	@string = @album_list_sorted_by_rank.print_album_list(string, @rank_to_highlight)
 	
 	erb :index
 	
@@ -33,7 +34,8 @@ get '/year' do
 	@albums = albums
 	@albums_sorted_by_year = album_list_object.sort_by_year
 	@album_list_sorted_by_year = AlbumList.new(@albums_sorted_by_year)
-	@string = @album_list_sorted_by_year.print_album_list(string)
+	@rank_to_highlight = params[:rank]
+	@string = @album_list_sorted_by_year.print_album_list(string, @rank_to_highlight)
 	
 	erb :index
 	
@@ -44,8 +46,31 @@ get '/name' do
 	@albums = albums
 	@albums_sorted_by_name = album_list_object.sort_by_name
 	@album_list_sorted_by_name = AlbumList.new(@albums_sorted_by_name)
-	@string = @album_list_sorted_by_name.print_album_list(string)
+	@rank_to_highlight = params[:rank]
+	@string = @album_list_sorted_by_name.print_album_list(string, @rank_to_highlight)
 	
 	erb :index
 	
 end
+
+post '/highlight' do
+	
+	@albums = albums
+	@album_list = album_list_object
+	@rank_to_highlight = params[:rank]
+	@album_list.highlight_rank(@rank_to_highlight)
+	@string = @album_list.print_album_list(string, @rank_to_highlight)
+	
+	erb :index
+end
+
+
+
+
+
+
+
+
+
+
+
